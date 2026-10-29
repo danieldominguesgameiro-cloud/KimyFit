@@ -11,6 +11,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
+// Theme sombre applique avant le premier affichage : fond du document et
+// couleur de barre d'etat corrects des le lancement.
+try {
+  if (localStorage.getItem('kimyfit_theme') === 'light') {
+    document.documentElement.style.background = '#14171a';
+    const tc = document.getElementById('themeColor');
+    if (tc) tc.content = '#14171a';
+  }
+} catch(e) {}
 const IS_IFRAME = (() => { try { return window.self !== window.top; } catch(e) { return true; } })();
 window._firebaseReady = IS_IFRAME ? Promise.resolve() : (async () => {
   const load = src => new Promise(r => { const s = document.createElement('script'); s.src = src; s.onload = r; s.onerror = r; document.head.appendChild(s); });
@@ -662,6 +671,16 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:no
   .page { max-width:1140px; padding:28px 40px 52px; }
 }
 
+
+/* ===== Correctif iOS : raccourcis recents de l'ecran d'accueil =====
+   iOS dessine la page des le haut de l'ecran, sous la barre d'etat, mais
+   calcule sa hauteur comme si cette barre prenait de la place. Il manque
+   alors en bas exactement la hauteur de la barre d'etat. Le script
+   fixStandaloneHeight() mesure l'ecart et pose la classe vp-fix. */
+html.vp-fix, html.vp-fix body { height: var(--app-h); overflow: hidden; }
+html.vp-fix #app-container { height: var(--app-h); }
+html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
+#vpProbe { position: fixed; top: 0; left: 0; width: 0; height: 0; padding-top: env(safe-area-inset-top); visibility: hidden; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -1091,7 +1110,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:no
     </div>
 
     <div style="text-align:center;font-size:10px;color:var(--muted2);padding:6px 0 4px;letter-spacing:0.5px;">
-      version <strong id="appVersion">v20 · thème neutre · 29-10-2026</strong>
+      version <strong id="appVersion">v21 · thème neutre · 29-10-2026</strong><span id="vpStatus"></span>
     </div>
   </div>
 
@@ -1375,6 +1394,61 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:no
 </div>
 
 <script>
+// ===== CORRECTIF HAUTEUR D'ECRAN (raccourcis recents sur l'ecran d'accueil) =====
+// Sur un raccourci cree recemment, iOS dessine la page sous la barre d'etat
+// mais lui donne la hauteur de l'ecran MOINS cette barre : une bande vide de
+// 54 pt (iPhone 15) ou 62 pt (Pro Max) apparait en bas. On compare la hauteur
+// reelle de l'ecran a celle que la page recoit et on corrige l'ecart.
+// Rien ne change dans les autres cas : Safari, anciens raccourcis, iPad en
+// Split View, ou si iOS calcule deja la bonne hauteur.
+let vpFixGap = 0;
+function safeTopInset() {
+  let probe = document.getElementById('vpProbe');
+  if (!probe) {
+    if (!document.body) return 0;
+    probe = document.createElement('div'); probe.id = 'vpProbe';
+    document.body.appendChild(probe);
+  }
+  return parseFloat(getComputedStyle(probe).paddingTop) || 0;
+}
+function fixStandaloneHeight() {
+  const root = document.documentElement;
+  const standalone = window.navigator.standalone === true ||
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  let apply = false, fullH = 0, gap = 0;
+  if (standalone && document.body) {
+    const shortSide = Math.min(screen.width, screen.height);
+    const longSide  = Math.max(screen.width, screen.height);
+    const vw = root.clientWidth, vh = root.clientHeight;   // hauteur reellement donnee a la page
+    const landscape = vw > vh;
+    const fullW = landscape ? longSide : shortSide;
+    fullH = landscape ? shortSide : longSide;
+    gap = fullH - vh;
+    const fullWidth = Math.abs(vw - fullW) <= 2;           // app en plein ecran
+    apply = fullWidth && safeTopInset() > 15 && gap >= 15 && gap <= 120;
+  }
+  if (apply) {
+    root.style.setProperty('--app-h', fullH + 'px');
+    root.classList.add('vp-fix');
+    vpFixGap = Math.round(gap);
+  } else {
+    root.style.removeProperty('--app-h');
+    root.classList.remove('vp-fix');
+    vpFixGap = 0;
+  }
+  const st = document.getElementById('vpStatus');
+  if (st) st.textContent = vpFixGap ? ' · affichage corrigé (+' + vpFixGap + ' pt)' : '';
+}
+fixStandaloneHeight();
+document.addEventListener('DOMContentLoaded', fixStandaloneHeight);
+window.addEventListener('load', fixStandaloneHeight);
+window.addEventListener('resize', fixStandaloneHeight);
+window.addEventListener('pageshow', fixStandaloneHeight);
+window.addEventListener('orientationchange', () => setTimeout(fixStandaloneHeight, 350));
+document.addEventListener('visibilitychange', () => { if (!document.hidden) fixStandaloneHeight(); });
+setTimeout(fixStandaloneHeight, 400);
+setTimeout(fixStandaloneHeight, 1500);
+
 // ===== CONSTANTS =====
 // ===== PROFILE-DRIVEN CONSTANTS (computed after profile load) =====
 let START_DATE = '2026-03-05';
@@ -4206,7 +4280,8 @@ function loadTheme() {
     const t = localStorage.getItem(STORAGE_NS + '_theme');
     if (t === 'light') {
       document.body.classList.add('light-theme');
-      document.getElementById('themeColor').content = '#1a1424';
+      document.getElementById('themeColor').content = '#14171a';
+      document.documentElement.style.background = '#14171a';
       const toggle = document.getElementById('themeToggle');
       if (toggle) toggle.classList.add('on');
     }
