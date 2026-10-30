@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" id="themeColor" content="#f7f7f5">
+<meta name="theme-color" id="themeColor" content="#F2F3F5">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>KIMY FIT</title>
@@ -15,9 +15,9 @@
 // couleur de barre d'etat corrects des le lancement.
 try {
   if (localStorage.getItem('kimyfit_theme') === 'light') {
-    document.documentElement.style.background = '#14171a';
+    document.documentElement.style.background = '#0F0F12';
     const tc = document.getElementById('themeColor');
-    if (tc) tc.content = '#14171a';
+    if (tc) tc.content = '#0F0F12';
   }
 } catch(e) {}
 const IS_IFRAME = (() => { try { return window.self !== window.top; } catch(e) { return true; } })();
@@ -35,75 +35,79 @@ window._firebaseReady = IS_IFRAME ? Promise.resolve() : (async () => {
    SUNSET POP — vibrant, joyful, summer energy
    ============================================================ */
 :root {
-  /* Brand pop palette */
-  --coral: #ff5e5b;
-  --coral-rgb: 255,94,91;
-  --tangerine: #ff8c42;
-  --tangerine-rgb: 255,140,66;
-  --sun: #ffc845;
-  --sun-rgb: 255,200,69;
-  --mint: #18c29c;
-  --mint-rgb: 24,194,156;
-  --aqua: #2ec5e8;
-  --aqua-rgb: 46,197,232;
-  --grape: #7b6cf6;
-  --grape-rgb: 123,108,246;
-  --pink: #ff6ec7;
-  --pink-rgb: 255,110,199;
+  /* ===== Palette Bento (v23) =====
+     c-* : remplissages (anneaux, barres) ; t-* : la meme couleur, assez
+     foncee (ou claire en sombre) pour du texte lisible. */
+  --tomato: #FF5B3A; --tomato-dim: rgba(255,91,58,0.12);
+  --c-kcal: #FF5B3A; --t-kcal: #E2401F;
+  --c-prot: #57AB2B; --t-prot: #378419;
+  --c-carb: #EDAD16; --t-carb: #9A6700;
+  --c-fat:  #5D65EA; --t-fat:  #4A51D6;
+  --c-def:  #1DAA82; --t-def:  #13896A;
+  --warn: #9A6700;
+  --ink-btn: #17171B; --ink-btn-t: #FFFFFF;
+  --nav-bg: rgba(255,255,255,0.92);
+  --accent-line: rgba(87,171,43,0.32);
 
-  /* Semantic mapping (keeps JS happy) */
-  --accent: #4a7c62;          /* protéines - vert sauge */
-  --accent-rgb: 74,124,98;
-  --accent-dim: rgba(74,124,98,0.12);
-  --accent2: #b8763a;         /* calories - terre cuite */
-  --accent2-rgb: 184,118,58;
-  --accent2-dim: rgba(184,118,58,0.12);
-  --blue: #4f6d8f;            /* déficit / glucides - bleu ardoise */
-  --blue-rgb: 79,109,143;
-  --blue-dim: rgba(79,109,143,0.12);
-  --purple: #7a6a8a;          /* lipides - prune sourd */
-  --green: #4a7c62;
-  --red: #a8524a;
+  /* Anciens noms, conserves pour le code existant */
+  --coral: #E2401F; --coral-rgb: 226,64,31;
+  --tangerine: #FF5B3A; --tangerine-rgb: 255,91,58;
+  --sun: #EDAD16; --sun-rgb: 237,173,22;
+  --mint: #57AB2B; --mint-rgb: 87,171,43;
+  --aqua: #4A51D6; --aqua-rgb: 74,81,214;
+  --grape: #5D65EA; --grape-rgb: 93,101,234;
+  --pink: #FF6EA8; --pink-rgb: 255,110,168;
 
-  /* Surfaces — blanc cassé, gris chauds, aucun effet vitre */
-  --bg: #f7f7f5;
-  --bg-grad: linear-gradient(180deg, #fbfbfa 0%, #f6f6f4 100%);
-  --surface: #ffffff;
-  --surface2: #f2f2ef;
-  --surface3: #e8e8e4;
-  --border: rgba(24,28,26,0.08);
-  --border2: rgba(24,28,26,0.15);
-  --hairline: rgba(24,28,26,0.06);
+  --accent: #378419;          /* proteines, positif */
+  --accent-rgb: 55,132,25;
+  --accent-dim: rgba(87,171,43,0.12);
+  --accent2: #E2401F;         /* calories, marque */
+  --accent2-rgb: 226,64,31;
+  --accent2-dim: rgba(255,91,58,0.12);
+  --blue: #4A51D6;            /* info */
+  --blue-rgb: 74,81,214;
+  --blue-dim: rgba(93,101,234,0.10);
+  --purple: #5D65EA;          /* lipides */
+  --green: #13896A;           /* deficit, depense */
+  --red: #E0244A;
 
-  --text: #1c211f;
-  --text2: #4d5654;
-  --muted: #c9cdc9;
-  --muted2: #8a918e;
+  /* Surfaces : gris tres clair, cartes blanches a plat */
+  --bg: #F2F3F5;
+  --bg-grad: linear-gradient(180deg, #F2F3F5 0%, #F2F3F5 100%);
+  --surface: #FFFFFF;
+  --surface2: #F2F3F5;
+  --surface3: #E6E7EB;
+  --border: rgba(23,23,27,0.08);
+  --border2: rgba(23,23,27,0.15);
+  --hairline: rgba(23,23,27,0.06);
+
+  --text: #17171B;
+  --text2: #3D3E46;
+  --muted: #C3C4CC;
+  --muted2: #6F707A;
 
   --glass: rgba(255,255,255,0.7);
   --glass2: rgba(255,255,255,0.9);
 
-  /* Cartes pleines, plus de flou : lisibilite avant tout */
-  --card-glass: #ffffff;
-  --card-glass-strong: #ffffff;
-  --card-border-glass: rgba(24,28,26,0.09);
+  --card-glass: #FFFFFF;
+  --card-glass-strong: #FFFFFF;
+  --card-border-glass: transparent;
   --card-blur: none;
-  --inner-glass: #f2f2ef;
+  --inner-glass: #F2F3F5;
 
-  /* Degrades sobres, un seul ton par usage */
-  --grad-sunset: linear-gradient(135deg, #3d5a4c 0%, #567a66 100%);
-  --grad-sunset-soft: linear-gradient(135deg, #4a6b5b 0%, #6a8f79 100%);
-  --grad-tropic: linear-gradient(135deg, #4a7c62 0%, #6a9c7e 100%);
-  --grad-candy: linear-gradient(135deg, #5a6b8c 0%, #7d8fae 100%);
-  --grad-mango: linear-gradient(135deg, #b07d42 0%, #c9a15f 100%);
+  --grad-sunset: linear-gradient(135deg, #FF5B3A 0%, #FF5B3A 100%);
+  --grad-sunset-soft: linear-gradient(135deg, #FF5B3A 0%, #FF5B3A 100%);
+  --grad-tropic: linear-gradient(135deg, #1DAA82 0%, #1DAA82 100%);
+  --grad-candy: linear-gradient(135deg, #5D65EA 0%, #5D65EA 100%);
+  --grad-mango: linear-gradient(135deg, #FF5B3A 0%, #FF5B3A 100%);
 
-  --header-bg: linear-gradient(135deg, #2f4539 0%, #46614f 55%, #5d7a66 100%);
+  --header-bg: #FF5B3A;
   --header-border: transparent;
 
-  --shadow-sm: 0 1px 3px rgba(24,28,26,0.06);
-  --shadow-card: 0 4px 16px -8px rgba(24,28,26,0.16);
-  --shadow-pop: 0 6px 18px -8px rgba(61,90,76,0.35);
-  --shadow-lg: 0 20px 50px -20px rgba(24,28,26,0.35);
+  --shadow-sm: none;
+  --shadow-card: none;
+  --shadow-pop: none;
+  --shadow-lg: 0 -12px 40px -12px rgba(23,23,27,0.25);
 
   --radius: 18px;
   --radius-sm: 14px;
@@ -114,58 +118,72 @@ window._firebaseReady = IS_IFRAME ? Promise.resolve() : (async () => {
   --font-num: 'Inter', sans-serif;
 }
 
-/* Dark theme = a warm "night sunset" variant (toggle still works, but optional) */
+/* Theme sombre (la classe s'appelle light-theme pour des raisons historiques) */
 body.light-theme {
-  --bg: #14171a;
-  --bg-grad: linear-gradient(180deg, #181c1f 0%, #131619 100%);
-  --surface: #1e2226;
-  --surface2: #262b30;
-  --surface3: #31373d;
+  --tomato: #FF5B3A; --tomato-dim: rgba(255,91,58,0.16);
+  --c-kcal: #FF5B3A; --t-kcal: #FF7A5C;
+  --c-prot: #78CA43; --t-prot: #8FD65E;
+  --c-carb: #F3BD33; --t-carb: #F5C64F;
+  --c-fat:  #7B83FF; --t-fat:  #9CA2FF;
+  --c-def:  #2BC69B; --t-def:  #4ED4AC;
+  --warn: #F5C64F;
+  --ink-btn: #F4F4F6; --ink-btn-t: #17171B;
+  --nav-bg: rgba(27,27,32,0.92);
+  --accent-line: rgba(120,202,67,0.35);
+
+  --coral: #FF7A5C; --tangerine: #FF5B3A; --sun: #F3BD33; --mint: #78CA43;
+  --aqua: #9CA2FF; --grape: #7B83FF;
+
+  --accent: #8FD65E;
+  --accent-rgb: 143,214,94;
+  --accent-dim: rgba(120,202,67,0.14);
+  --accent2: #FF7A5C;
+  --accent2-rgb: 255,122,92;
+  --accent2-dim: rgba(255,91,58,0.16);
+  --blue: #9CA2FF;
+  --blue-rgb: 156,162,255;
+  --blue-dim: rgba(123,131,255,0.14);
+  --purple: #7B83FF;
+  --green: #4ED4AC;
+  --red: #FF5370;
+
+  --bg: #0F0F12;
+  --bg-grad: linear-gradient(180deg, #0F0F12 0%, #0F0F12 100%);
+  --surface: #1B1B20;
+  --surface2: #26262C;
+  --surface3: #2F2F36;
   --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.16);
+  --border2: rgba(255,255,255,0.15);
   --hairline: rgba(255,255,255,0.06);
-  --text: #eef1f0;
-  --text2: #b3bbb8;
-  --muted: #4b5359;
-  --muted2: #8b9490;
+  --text: #F4F4F6;
+  --text2: #D4D4DA;
+  --muted: #43434C;
+  --muted2: #9A9BA6;
   --glass: rgba(255,255,255,0.05);
   --glass2: rgba(255,255,255,0.09);
-  --card-glass: #1e2226;
-  --card-glass-strong: #242a2f;
-  --card-border-glass: rgba(255,255,255,0.09);
+  --card-glass: #1B1B20;
+  --card-glass-strong: #202026;
+  --card-border-glass: transparent;
   --card-blur: none;
-  --inner-glass: #262b30;
+  --inner-glass: #26262C;
 
-  --accent: #6fae8c;
-  --accent-rgb: 111,174,140;
-  --accent-dim: rgba(111,174,140,0.15);
-  --accent2: #d59355;
-  --accent2-rgb: 213,147,85;
-  --accent2-dim: rgba(213,147,85,0.15);
-  --blue: #7295bb;
-  --blue-rgb: 114,149,187;
-  --blue-dim: rgba(114,149,187,0.15);
-  --purple: #9d8bb0;
-  --green: #6fae8c;
-  --red: #cf7168;
+  --grad-sunset: linear-gradient(135deg, #FF5B3A 0%, #FF5B3A 100%);
+  --grad-sunset-soft: linear-gradient(135deg, #FF5B3A 0%, #FF5B3A 100%);
+  --grad-tropic: linear-gradient(135deg, #1DAA82 0%, #1DAA82 100%);
+  --grad-candy: linear-gradient(135deg, #5D65EA 0%, #5D65EA 100%);
+  --grad-mango: linear-gradient(135deg, #FF5B3A 0%, #FF5B3A 100%);
+  --header-bg: #FF5B3A;
 
-  --grad-sunset: linear-gradient(135deg, #2c4136 0%, #3f5a4a 100%);
-  --grad-sunset-soft: linear-gradient(135deg, #354d40 0%, #4a6857 100%);
-  --grad-tropic: linear-gradient(135deg, #35604a 0%, #4a7c62 100%);
-  --grad-candy: linear-gradient(135deg, #3d4a60 0%, #55668a 100%);
-  --grad-mango: linear-gradient(135deg, #7d5730 0%, #a37a45 100%);
-  --header-bg: linear-gradient(135deg, #1f2e26 0%, #2c4136 55%, #3a5546 100%);
-
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-  --shadow-card: 0 4px 16px -8px rgba(0,0,0,0.6);
-  --shadow-pop: 0 6px 18px -8px rgba(0,0,0,0.6);
-  --shadow-lg: 0 20px 50px -20px rgba(0,0,0,0.8);
+  --shadow-sm: none;
+  --shadow-card: none;
+  --shadow-pop: none;
+  --shadow-lg: 0 -12px 40px -12px rgba(0,0,0,0.7);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
 html {
-  background: #f7f7f5;              /* = --bg, mis a jour par loadTheme() */
+  background: #F2F3F5;              /* = --bg, mis a jour par loadTheme() */
   height:100%; width:100%;
   overscroll-behavior: none;        /* supprime le rebond elastique iOS */
   transition: background-color 0.4s ease;
@@ -681,6 +699,100 @@ html.vp-fix, html.vp-fix body { height: var(--app-h); overflow: hidden; }
 html.vp-fix #app-container { height: var(--app-h); }
 html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
 #vpProbe { position: fixed; top: 0; left: 0; width: 0; height: 0; padding-top: env(safe-area-inset-top); visibility: hidden; pointer-events: none; }
+
+/* ==================== COULEURS BENTO (v23) ====================
+   Disposition d'origine, palette de la boite de meal prep :
+   tomate = marque et kcal, avocat = proteines et positif,
+   grain = glucides et attention, myrtille = lipides et info,
+   menthe = deficit et depense. Cartes a plat, sans ombres colorees. */
+body { background: var(--bg); background-image: none; }
+
+/* --- en-tete compact --- */
+.header-inner { background: var(--tomato); animation: none; box-shadow: none; border-radius: 22px; padding: 14px 16px; }
+.header-inner::before, .header-inner::after { content: none; display: none; }
+.hdr-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.header .brand { min-width: 0; }
+.app-title { font-size: 22px; line-height: 1.1; letter-spacing: -0.4px; text-shadow: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.app-subtitle { font-size: 12.5px; margin-top: 2px; color: rgba(255,255,255,0.88); text-transform: none; letter-spacing: 0; }
+.app-subtitle::first-letter { text-transform: uppercase; }
+.days-badge { flex-direction: row; align-items: baseline; gap: 4px; flex-shrink: 0; background: rgba(255,255,255,0.2); border: none; border-radius: 99px; padding: 6px 11px; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.days-badge .num { font-size: 17px; }
+.days-badge .lbl { font-size: 11.5px; font-weight: 600; letter-spacing: 0; text-transform: none; color: rgba(255,255,255,0.92); }
+.hdr-prog { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.9); white-space: nowrap; }
+.hdr-prog .progress-track { flex: 1; margin: 0; height: 6px; background: rgba(255,255,255,0.3); border-radius: 99px; overflow: hidden; }
+.hdr-prog .progress-fill { background: #fff; box-shadow: none; }
+.hdr-to strong { color: #fff; font-weight: 800; }
+@media (max-width: 767px) { .header { padding: 6px 14px 4px; } }
+
+/* --- cartes, anneaux, chiffres --- */
+.macro-card { border-radius: 20px; box-shadow: none !important; }
+.macro-card::before { opacity: 0.09; }
+body.light-theme .macro-card::before { opacity: 0.13; }
+.macro-card.cal::before { background: var(--c-kcal); }
+.macro-card.prot::before { background: var(--c-prot); }
+.macro-card.def::before { background: var(--c-def); }
+.macro-val.def { color: var(--t-def); }
+.qp-val.g { color: var(--t-carb); }
+.steps-result { color: var(--t-def); }
+
+/* --- budget : titre au-dessus, chiffre en dessous, plus de coupure --- */
+.budget-bar-label { flex-direction: column; align-items: flex-start; gap: 3px; color: var(--muted2); }
+#budgetLabel { font-size: 14px; color: var(--text2); }
+
+/* --- champs qui doivent pouvoir retrecir dans leur rangee --- */
+.weight-num-input, .steps-input { min-width: 0; }
+
+/* --- rappels du jour --- */
+.reminder { background: var(--surface); border: none; box-shadow: none; }
+.reminder-circle { border: 2px solid var(--tomato); }
+.reminder-circle.done { background: var(--c-prot); border-color: var(--c-prot); }
+.reminder-text { color: var(--text); font-weight: 600; }
+
+/* --- boutons : encre en clair, blanc en sombre --- */
+.btn-confirm, .btn-save-settings, .btn-validate, .btn-export, .btn-add { background: var(--ink-btn); color: var(--ink-btn-t); box-shadow: none; }
+.toast { background: var(--ink-btn); color: var(--ink-btn-t); box-shadow: 0 10px 30px -8px rgba(0,0,0,0.3); }
+.toggle-switch.on { background: var(--c-prot); }
+body.light-theme .act-mode-btn.active { background: #3A3A42; }
+
+/* --- titres de reglages --- */
+.settings-title, .accordion-header, .export-title { color: var(--coral); }
+
+/* --- champs : contour tomate --- */
+.form-input:focus, .settings-input:focus, .weight-num-input:focus, .search-box input:focus, .steps-input:focus { border-color: var(--tomato); }
+.qty-number-input { border-color: var(--tomato); }
+
+/* --- barre du bas : icones dessinees, onglet actif tomate --- */
+.tab .tab-icon svg { width: 24px; height: 24px; display: block; }
+.tab.active .tab-icon { transform: none; }
+.tab.active::after { display: none; }
+@media (max-width: 767px) {
+  .bottom-nav { background: var(--nav-bg); border: 1px solid var(--border); box-shadow: 0 8px 28px -6px rgba(23,23,27,0.18); }
+  body.light-theme .bottom-nav { background: var(--nav-bg); border-color: var(--border); box-shadow: 0 8px 28px -6px rgba(0,0,0,0.6); }
+  .tab { color: var(--muted2); font-size: 10px; font-weight: 600; letter-spacing: 0; border-radius: 18px; gap: 3px; }
+  .tab .tab-icon { font-size: 0; line-height: 0; }
+  .tab.active { color: var(--coral); background: var(--tomato-dim); }
+}
+@media (min-width: 768px) { .tab.active { color: var(--coral); } body.light-theme .bottom-nav { background: var(--surface); border-color: var(--border); } }
+
+/* --- restes du theme d'ete --- */
+.week-hero::before, .weight-hero::after { content: none; display: none; }
+.week-hero, .weight-hero { box-shadow: none; }
+.week-score, .weight-big { text-shadow: none; }
+.day-nav-item.active { box-shadow: 0 8px 18px -8px rgba(255,91,58,0.5); }
+.overlay { background: rgba(10,10,14,0.45); }
+
+/* --- complements (reglages) --- */
+.supp-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 10px 0; }
+.supp-row + .supp-row { border-top: 1px solid var(--hairline); }
+.supp-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.supp-sub { font-size: 12px; color: var(--muted2); margin-top: 2px; line-height: 1.45; }
+.supp-dose { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--hairline); }
+.supp-dose label { font-size: 13px; font-weight: 600; color: var(--text); }
+.supp-dose-in { display: flex; align-items: center; gap: 8px; }
+.supp-dose-in .form-input { width: 84px; text-align: center; padding: 10px; }
+.supp-dose-in span { font-size: 13px; color: var(--muted2); font-weight: 600; }
+.supp-cap { font-size: 12px; color: var(--muted2); margin: 14px 0 8px; }
+.supp-summary { font-size: 12.5px; color: var(--text2); background: var(--surface2); border-radius: 12px; padding: 10px 12px; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -691,25 +803,18 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
 <!-- HEADER -->
 <div class="header">
   <div class="header-inner">
-    <div class="header-top">
-      <div class="header-row1">
-        <div class="brand">
-          <div class="app-title" id="appTitle">Kimy Fit</div>
-          <div class="app-subtitle" id="headerDate"></div>
-        </div>
-        <div class="days-badge">
-          <span class="num" id="daysLeft">—</span>
-          <span class="lbl">jours restants</span>
-        </div>
+    <div class="hdr-top">
+      <div class="brand">
+        <div class="app-title" id="appTitle">Kimy Fit</div>
+        <div class="app-subtitle" id="headerDate"></div>
       </div>
-      <div class="progress-section">
-        <div class="progress-labels">
-          <span id="progFrom">— kg</span>
-          <span>Objectif : <strong id="progTo">85 kg</strong></span>
-        </div>
-      </div>
+      <div class="days-badge"><span class="num" id="daysLeft">—</span><span class="lbl">jours restants</span></div>
     </div>
-    <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    <div class="hdr-prog">
+      <span class="hdr-from" id="progFrom">— kg</span>
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+      <span class="hdr-to">objectif <strong id="progTo">— kg</strong></span>
+    </div>
   </div>
 </div>
 
@@ -717,22 +822,22 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
 <div class="bottom-nav">
   <div id="sidebarTitle" style="display:none;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--muted2);padding:0 12px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;"></div>
   <div class="tab active" onclick="goTab('today',this)">
-    <span class="tab-icon">🍽</span><span>Aujourd'hui</span>
+    <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v7.5M4.8 3v4.6a2.2 2.2 0 0 0 4.4 0V3M7 10.5V21"/><path d="M17.5 21V3c-2.4 1.6-3.5 4.3-3.5 7.6V13h3.5"/></svg></span><span>Aujourd'hui</span>
   </div>
   <div class="tab" onclick="goTab('semaine',this)">
-    <span class="tab-icon">📊</span><span>Semaine</span>
+    <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5h17"/><rect x="5" y="11" width="3.2" height="6.5" rx="1"/><rect x="10.4" y="5.5" width="3.2" height="12" rx="1"/><rect x="15.8" y="8.5" width="3.2" height="9" rx="1"/></svg></span><span>Semaine</span>
   </div>
   <div class="tab" onclick="goTab('poids',this)">
-    <span class="tab-icon">⚖️</span><span>Poids</span>
+    <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M8.2 10.2a5.4 5.4 0 0 1 7.6 0"/><path d="M12 10.4l1.6-2.3"/></svg></span><span>Poids</span>
   </div>
-  <div class="tab" onclick="goTab('muscu',this)">
-    <span class="tab-icon">💪</span><span>Muscu</span>
+  <div class="tab" id="tabMuscu" onclick="goTab('muscu',this)">
+    <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg></span><span>Muscu</span>
   </div>
   <div class="tab" onclick="goTab('controle',this)">
-    <span class="tab-icon">🎯</span><span>Contrôle</span>
+    <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg></span><span>Contrôle</span>
   </div>
   <div class="tab" onclick="goTab('reglages',this)">
-    <span class="tab-icon">⚙️</span><span>Réglages</span>
+    <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9.5M18.5 7.5H20M4 16.5h2.5M11.5 16.5H20"/><circle cx="16" cy="7.5" r="2.4"/><circle cx="9" cy="16.5" r="2.4"/></svg></span><span>Réglages</span>
   </div>
 </div>
 
@@ -742,19 +847,19 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
   <!-- TODAY -->
   <div class="page active" id="page-today">
 
-    <div class="reminder" id="weightReminder" onclick="goTab('poids', document.querySelectorAll('.bottom-nav .tab')[2])" style="display:none;border-color:rgba(77,166,255,0.2);">
-      <div class="reminder-circle" id="weightReminderCircle" style="border-color:var(--blue);"></div>
-      <span class="reminder-text" style="color:var(--blue);">⚖️ Jeudi — pèse-toi à jeun et rentre ton poids !</span>
+    <div class="reminder" id="weightReminder" onclick="goTab('poids', document.querySelectorAll('.bottom-nav .tab')[2])" style="display:none;">
+      <div class="reminder-circle" id="weightReminderCircle"></div>
+      <span class="reminder-text">⚖️ Jeudi — pèse-toi à jeun et rentre ton poids !</span>
     </div>
     <div class="reminder" id="creatineReminder" onclick="toggleCreatine()">
       <div class="reminder-circle" id="creatineCircle"></div>
-      <span class="reminder-text">Créatine ESN 5g · à prendre</span>
+      <span class="reminder-text">Créatine · à prendre</span>
     </div>
 
     <div class="macros-grid">
       <div class="macro-card cal">
         <div class="ring-wrap">
-          <svg viewBox="0 0 54 54"><circle class="ring-bg" cx="27" cy="27" r="21"/><circle class="ring-fg" id="ringCal" cx="27" cy="27" r="21" stroke="var(--accent2)" stroke-dasharray="131.9" stroke-dashoffset="131.9"/></svg>
+          <svg viewBox="0 0 54 54"><circle class="ring-bg" cx="27" cy="27" r="21"/><circle class="ring-fg" id="ringCal" cx="27" cy="27" r="21" stroke="var(--c-kcal)" stroke-dasharray="131.9" stroke-dashoffset="131.9"/></svg>
           <div class="ring-pct" id="pctCal" style="color:var(--accent2)">0%</div>
         </div>
         <div class="macro-val cal" id="valCal">0</div>
@@ -767,22 +872,22 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
             <circle class="ring-bg" cx="27" cy="27" r="21"/>
             <circle class="ring-bg ring-bg-m" cx="27" cy="27" r="15"/>
             <circle class="ring-bg ring-bg-s" cx="27" cy="27" r="9"/>
-            <circle class="ring-fg" id="ringProt" cx="27" cy="27" r="21" stroke="var(--accent)" stroke-dasharray="131.9" stroke-dashoffset="131.9"/>
-            <circle class="ring-fg ring-fg-m" id="ringCarb" cx="27" cy="27" r="15" stroke="var(--blue)" stroke-dasharray="94.2" stroke-dashoffset="94.2"/>
-            <circle class="ring-fg ring-fg-s" id="ringFat" cx="27" cy="27" r="9" stroke="var(--purple)" stroke-dasharray="56.5" stroke-dashoffset="56.5"/>
+            <circle class="ring-fg" id="ringProt" cx="27" cy="27" r="21" stroke="var(--c-prot)" stroke-dasharray="131.9" stroke-dashoffset="131.9"/>
+            <circle class="ring-fg ring-fg-m" id="ringCarb" cx="27" cy="27" r="15" stroke="var(--c-carb)" stroke-dasharray="94.2" stroke-dashoffset="94.2"/>
+            <circle class="ring-fg ring-fg-s" id="ringFat" cx="27" cy="27" r="9" stroke="var(--c-fat)" stroke-dasharray="56.5" stroke-dashoffset="56.5"/>
           </svg>
         </div>
         <div class="macro-legend">
-          <div class="ml-row"><span class="ml-dot" style="background:var(--accent)"></span><span class="ml-k">P</span><span class="ml-v" id="mlProt">0</span><span class="ml-t">/<span id="mlProtT">0</span></span></div>
-          <div class="ml-row"><span class="ml-dot" style="background:var(--blue)"></span><span class="ml-k">G</span><span class="ml-v" id="mlCarb">0</span><span class="ml-t">/<span id="mlCarbT">0</span></span></div>
-          <div class="ml-row"><span class="ml-dot" style="background:var(--purple)"></span><span class="ml-k">L</span><span class="ml-v" id="mlFat">0</span><span class="ml-t">/<span id="mlFatT">0</span></span></div>
+          <div class="ml-row"><span class="ml-dot" style="background:var(--c-prot)"></span><span class="ml-k">P</span><span class="ml-v" id="mlProt">0</span><span class="ml-t">/<span id="mlProtT">0</span></span></div>
+          <div class="ml-row"><span class="ml-dot" style="background:var(--c-carb)"></span><span class="ml-k">G</span><span class="ml-v" id="mlCarb">0</span><span class="ml-t">/<span id="mlCarbT">0</span></span></div>
+          <div class="ml-row"><span class="ml-dot" style="background:var(--c-fat)"></span><span class="ml-k">L</span><span class="ml-v" id="mlFat">0</span><span class="ml-t">/<span id="mlFatT">0</span></span></div>
         </div>
         <div class="macro-label">Macros <span id="macroChev" style="display:inline-block;transition:transform 0.25s;">▾</span></div>
       </div>
       <div class="macro-card def">
         <div class="ring-wrap">
-          <svg viewBox="0 0 54 54"><circle class="ring-bg" cx="27" cy="27" r="21"/><circle class="ring-fg" id="ringDef" cx="27" cy="27" r="21" stroke="var(--blue)" stroke-dasharray="131.9" stroke-dashoffset="131.9"/></svg>
-          <div class="ring-pct" id="pctDef" style="color:var(--blue)">0</div>
+          <svg viewBox="0 0 54 54"><circle class="ring-bg" cx="27" cy="27" r="21"/><circle class="ring-fg" id="ringDef" cx="27" cy="27" r="21" stroke="var(--c-def)" stroke-dasharray="131.9" stroke-dashoffset="131.9"/></svg>
+          <div class="ring-pct" id="pctDef" style="color:var(--t-def)">0</div>
         </div>
         <div class="macro-val def" id="valDef">0</div>
         <div class="macro-sub" id="defSubLabel">/ 1100 objectif</div>
@@ -801,8 +906,8 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
         <span id="budgetLabel">= <strong style="color:var(--accent)">+2300</strong></span>
       </div>
       <div style="height:8px;background:var(--surface3);border-radius:99px;overflow:hidden;position:relative;">
-        <div id="budgetBarEat" style="position:absolute;left:0;top:0;height:100%;background:var(--accent2);border-radius:99px;transition:width 0.5s ease;width:0%"></div>
-        <div id="budgetBarSport" style="position:absolute;top:0;height:100%;background:var(--green);border-radius:99px;transition:all 0.5s ease;left:0%;width:0%;opacity:0.8;"></div>
+        <div id="budgetBarEat" style="position:absolute;left:0;top:0;height:100%;background:var(--c-kcal);border-radius:99px;transition:width 0.5s ease;width:0%"></div>
+        <div id="budgetBarSport" style="position:absolute;top:0;height:100%;background:var(--c-def);border-radius:99px;transition:all 0.5s ease;left:0%;width:0%;opacity:0.8;"></div>
       </div>
       <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--muted2);">
         <span>🍽 <span id="barEatLbl">0</span> kcal mangées</span>
@@ -1060,6 +1165,38 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
       <button class="btn-save-settings" onclick="saveSettings()">Enregistrer</button>
     </div>
 
+    <div class="settings-card" id="suppsCard">
+      <div class="settings-title" style="margin-bottom:6px;"><span>💊 Compléments</span></div>
+      <div class="supp-row">
+        <div>
+          <div class="supp-name">Créatine</div>
+          <div class="supp-sub">Une case à cocher chaque jour sur l'accueil</div>
+        </div>
+        <div class="toggle-switch" id="suppCreaToggle" onclick="toggleSupp('creatine')"></div>
+      </div>
+      <div class="supp-row">
+        <div>
+          <div class="supp-name">Collagène</div>
+          <div class="supp-sub">Cocher la case ajoute ta dose aux repas du jour</div>
+        </div>
+        <div class="toggle-switch" id="suppCollToggle" onclick="toggleSupp('collagen')"></div>
+      </div>
+      <div id="suppCollBox" style="display:none;">
+        <div class="supp-dose">
+          <label for="scDose">Dose par jour</label>
+          <div class="supp-dose-in"><input class="form-input" id="scDose" type="number" inputmode="decimal" step="0.1" oninput="previewCollagen()" onchange="saveCollagen()"><span>g</span></div>
+        </div>
+        <div class="supp-cap">Valeurs pour 100 g, comme sur l'étiquette</div>
+        <div class="form-grid">
+          <div class="form-group"><label for="scCal">Kcal</label><input class="form-input" id="scCal" type="number" inputmode="decimal" step="0.1" oninput="previewCollagen()" onchange="saveCollagen()"></div>
+          <div class="form-group"><label for="scProt">Protéines (g)</label><input class="form-input" id="scProt" type="number" inputmode="decimal" step="0.1" oninput="previewCollagen()" onchange="saveCollagen()"></div>
+          <div class="form-group"><label for="scCarb">Glucides (g)</label><input class="form-input" id="scCarb" type="number" inputmode="decimal" step="0.1" oninput="previewCollagen()" onchange="saveCollagen()"></div>
+          <div class="form-group"><label for="scFat">Lipides (g)</label><input class="form-input" id="scFat" type="number" inputmode="decimal" step="0.1" oninput="previewCollagen()" onchange="saveCollagen()"></div>
+        </div>
+        <div id="suppCollSummary" class="supp-summary"></div>
+      </div>
+    </div>
+
     <div class="settings-card" style="padding:0;overflow:hidden;">
       <div class="accordion-header" onclick="toggleAccordion('foodAccordion', this)">
         <span>🍽 Mes aliments</span>
@@ -1073,7 +1210,7 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
       </div>
     </div>
 
-    <div class="settings-card" style="padding:0;overflow:hidden;">
+    <div class="settings-card" id="sportSettingsCard" style="padding:0;overflow:hidden;">
       <div class="accordion-header" onclick="toggleAccordion('sportAccordion', this)">
         <span>💪 Mes exercices</span>
         <div style="display:flex;align-items:center;gap:10px;">
@@ -1092,10 +1229,19 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0;">
         <div>
-          <div style="font-size:14px;font-weight:500;color:var(--text);">Thème clair</div>
-          <div style="font-size:12px;color:var(--muted2);margin-top:2px;">Style épuré, fond blanc</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text);">Thème sombre</div>
+          <div style="font-size:12px;color:var(--muted2);margin-top:2px;">Fond anthracite, plus doux le soir</div>
         </div>
         <div class="toggle-switch" id="themeToggle" onclick="toggleTheme()"></div>
+      </div>
+      <div style="margin-top:18px;">
+        <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:9px;">Sport</div>
+        <div class="act-mode-row">
+          <button id="sportLvlTout" class="act-mode-btn active" onclick="setSportLevel('tout')">Tout</button>
+          <button id="sportLvlSans" class="act-mode-btn" onclick="setSportLevel('sans-seances')">Sans séances</button>
+          <button id="sportLvlAucun" class="act-mode-btn" onclick="setSportLevel('aucun')">Aucun</button>
+        </div>
+        <div id="sportLvlHint" style="font-size:12px;color:var(--muted2);line-height:1.55;margin-top:9px;"></div>
       </div>
     </div>
 
@@ -1110,7 +1256,7 @@ html.vp-fix .overlay { bottom: auto; height: var(--app-h); }
     </div>
 
     <div style="text-align:center;font-size:10px;color:var(--muted2);padding:6px 0 4px;letter-spacing:0.5px;">
-      version <strong id="appVersion">v21 · thème neutre · 29-10-2026</strong><span id="vpStatus"></span>
+      version <strong id="appVersion">v23 · couleurs Bento · 30-10-2026</strong><span id="vpStatus"></span>
     </div>
   </div>
 
@@ -1771,6 +1917,8 @@ const TODAY = _tNow.getFullYear() + '-' + String(_tNow.getMonth()+1).padStart(2,
 let selectedFood = null;
 
 const DEFAULT_APP_NAME = 'Kimy Fit';
+// Complements actives par defaut dans cette app (modifiables dans Reglages)
+const DEFAULT_SUPPS = { creatine: true, collagen: false };
 
 function applyProfileName() {
   // Le nom affiche est un reglage independant du prenom.
@@ -1781,7 +1929,7 @@ function applyProfileName() {
     t.textContent = name;
     // Les noms longs sont retrecis pour tenir sur une ligne du bandeau
     const n = name.length;
-    t.style.fontSize = n > 22 ? '20px' : n > 16 ? '24px' : n > 12 ? '27px' : '';
+    t.style.fontSize = n > 22 ? '15px' : n > 16 ? '17px' : n > 12 ? '19px' : '';
   }
   const sidebarTitle = document.getElementById('sidebarTitle');
   if (sidebarTitle) sidebarTitle.textContent = name.toUpperCase();
@@ -1813,10 +1961,7 @@ function init() {
       weightReminder.style.opacity = '0.5';
     }
   }
-  if (S.creatine[TODAY]) {
-    document.getElementById('creatineCircle').classList.add('done');
-    document.getElementById('creatineReminder').style.opacity = '0.5';
-  }
+  renderSuppsReminder();
 }
 
 function loadSettings() {
@@ -1840,6 +1985,7 @@ function loadSettings() {
   if (_apiKey) {
     document.getElementById('sApiKey') && (document.getElementById('sApiKey').value = _apiKey);
   }
+  renderSuppsSettings();
 }
 
 function setTdeeMode(mode) {
@@ -1850,12 +1996,53 @@ function setTdeeMode(mode) {
   updateMacros(); updateHeader(); renderToday(); renderWeek(); renderControl();
 }
 
+// ===== AFFICHAGE DU SPORT : Tout / Sans seances / Aucun =====
+// Sans seances : masque l'ajout de seances (accueil, jours passes) et la liste
+//                "Mes exercices" des reglages.
+// Aucun        : masque en plus l'onglet Muscu.
+// Les donnees deja saisies ne sont ni effacees ni retirees des calculs.
+function sportLevel() { return (S.settings && S.settings.sportLevel) || 'tout'; }
+
+function setSportLevel(lvl) {
+  if (!S.settings) return;
+  S.settings.sportLevel = lvl;
+  save();
+  applySportLevel();
+  renderToday();
+  if (typeof renderWeek === 'function') renderWeek();
+}
+
+function applySportLevel() {
+  const lvl = sportLevel();
+  const total = S.settings && S.settings.tdeeMode === 'total';
+  const set = (id, disp) => { const e = document.getElementById(id); if (e) e.style.display = disp; };
+  set('sportSection', (lvl === 'tout' && !total) ? '' : 'none');
+  set('sportSettingsCard', lvl === 'tout' ? '' : 'none');
+  set('tabMuscu', lvl === 'aucun' ? 'none' : '');
+
+  // Si l'onglet Muscu etait ouvert, on revient a l'accueil
+  const pm = document.getElementById('page-muscu');
+  if (lvl === 'aucun' && pm && pm.classList.contains('active')) {
+    goTab('today', document.querySelectorAll('.bottom-nav .tab')[0]);
+  }
+
+  const btn = { 'tout': 'sportLvlTout', 'sans-seances': 'sportLvlSans', 'aucun': 'sportLvlAucun' };
+  Object.keys(btn).forEach(k => { const b = document.getElementById(btn[k]); if (b) b.classList.toggle('active', k === lvl); });
+
+  const hint = document.getElementById('sportLvlHint');
+  if (hint) hint.innerHTML = lvl === 'tout'
+    ? "Séances de sport et onglet Muscu affichés."
+    : lvl === 'sans-seances'
+      ? "L'ajout de séances est masqué, sur l'accueil comme dans <strong>Mes exercices</strong>. L'onglet Muscu reste là."
+      : "Séances et onglet <strong>Muscu</strong> masqués. Ton activité Apple Watch reste comptée.";
+}
+
 function applyTdeeMode() {
   const total = S.settings && S.settings.tdeeMode === 'total';
   const set = (id, disp) => { const e = document.getElementById(id); if (e) e.style.display = disp; };
-  set('sportSection',   total ? 'none' : '');
   set('activitySection', total ? 'none' : '');
   set('tdeeTotalNote',  total ? '' : 'none');
+  applySportLevel();   // la section Sport depend aussi du reglage sport
 
   const b = document.getElementById('tdeeModeBase'), t = document.getElementById('tdeeModeTotal');
   if (b) b.classList.toggle('active', !total);
@@ -1931,7 +2118,7 @@ function updateHeader() {
   const goal = S.settings.goalWeight;
   const pct = Math.min(100, Math.max(0, Math.round((START_WEIGHT - latest) / (START_WEIGHT - goal) * 100)));
   document.getElementById('progFill').style.width = pct + '%';
-  document.getElementById('progFrom').textContent = latest + ' kg actuels';
+  document.getElementById('progFrom').textContent = latest + ' kg';
   document.getElementById('progTo').textContent = goal + ' kg';
 }
 
@@ -1947,7 +2134,7 @@ function goTab(tab, el) {
   if (tab === 'reglages') renderSettingsLists();
 }
 
-function renderToday() { updateMacros(); renderMealList(); renderSportList(); renderStepsToday(); }
+function renderToday() { updateMacros(); renderMealList(); renderSportList(); renderStepsToday(); renderSuppsReminder(); }
 
 let activityMode = 'watch'; // 'watch' (par defaut) | 'steps'
 
@@ -2128,9 +2315,9 @@ function toggleMacroDetail() {
 function macroRows() {
   const m = getDayMacros(TODAY), st = S.settings || {};
   return [
-    { key:'Protéines', short:'Prot', val:m.prot, targ:st.protTarget || 0, color:'var(--accent)', over:false },
-    { key:'Glucides',  short:'Carb', val:m.carb, targ:st.carbTarget || 0, color:'var(--blue)',   over:true  },
-    { key:'Lipides',   short:'Fat',  val:m.fat,  targ:st.fatTarget  || 0, color:'var(--purple)', over:true  }
+    { key:'Protéines', short:'Prot', val:m.prot, targ:st.protTarget || 0, color:'var(--c-prot)', tcolor:'var(--t-prot)', over:false },
+    { key:'Glucides',  short:'Carb', val:m.carb, targ:st.carbTarget || 0, color:'var(--c-carb)', tcolor:'var(--t-carb)', over:true  },
+    { key:'Lipides',   short:'Fat',  val:m.fat,  targ:st.fatTarget  || 0, color:'var(--c-fat)', tcolor:'var(--t-fat)', over:true  }
   ];
 }
 
@@ -2167,7 +2354,7 @@ function renderMacroDetail() {
     return `<div class="macro-bar-row">
       <div class="macro-bar-top">
         <span style="font-weight:700;color:var(--text)">${r.key}</span>
-        <span style="color:${noteCol}"><strong style="color:${r.color}">${Math.round(r.val)}</strong> / ${r.targ} g · ${note}</span>
+        <span style="color:${noteCol}"><strong style="color:${r.tcolor || r.color}">${Math.round(r.val)}</strong> / ${r.targ} g · ${note}</span>
       </div>
       <div class="macro-bar-track"><div class="macro-bar-fill" style="width:${pct}%;background:${r.color}"></div></div>
     </div>`;
@@ -2223,18 +2410,17 @@ function updateMacros() {
   document.getElementById('valCal').textContent = Math.round(m.cal);
   document.getElementById('targCal').textContent = Math.round(budgetToday);
   const defEl = document.getElementById('valDef');
-  let defColor;
-  if (netDeficit >= TARGET_DEFICIT) defColor = 'var(--accent)';
-  else if (netDeficit >= TARGET_DEFICIT * 0.7) defColor = 'var(--green)';
-  else if (netDeficit >= 0) defColor = 'var(--accent2)';
-  else defColor = 'var(--red)';
+  let defColor, defRing;
+  if (netDeficit >= TARGET_DEFICIT * 0.7) { defColor = 'var(--t-def)'; defRing = 'var(--c-def)'; }
+  else if (netDeficit >= 0) { defColor = 'var(--warn)'; defRing = 'var(--c-carb)'; }
+  else { defColor = 'var(--red)'; defRing = 'var(--red)'; }
   defEl.textContent = (netDeficit >= 0 ? '+' : '') + Math.round(netDeficit);
   defEl.style.color = defColor;
   document.getElementById('pctDef').textContent = defPct + '%';
   document.getElementById('pctDef').style.color = defColor;
-  document.getElementById('ringDef').style.stroke = defColor;
+  document.getElementById('ringDef').style.stroke = defRing;
   let defSubText, defSubColor;
-  if (netDeficit >= TARGET_DEFICIT) { defSubText = `✓ −${TARGET_DEFICIT} atteint !`; defSubColor = 'var(--accent)'; }
+  if (netDeficit >= TARGET_DEFICIT) { defSubText = `✓ −${TARGET_DEFICIT} atteint !`; defSubColor = 'var(--t-def)'; }
   else if (netDeficit >= 0) { defSubText = `/ ${TARGET_DEFICIT} objectif`; defSubColor = 'var(--muted2)'; }
   else { defSubText = `⚠️ surplus !`; defSubColor = 'var(--red)'; }
   document.getElementById('defSubLabel').textContent = defSubText;
@@ -2371,13 +2557,143 @@ function renderSportList() {
 
 function delSport(i) { S.sportLog[TODAY].splice(i,1); save(); renderSportList(); updateMacros(); }
 
-function toggleCreatine() {
-  S.creatine[TODAY] = !S.creatine[TODAY];
+// ===== COMPLEMENTS : creatine et collagene =====
+// La case du jour marque les complements comme pris. Si le collagene est
+// active, sa dose est ajoutee aux repas du jour (et retiree si on decoche) :
+// elle compte alors partout, macros, semaine et controle.
+const COLLAGEN_DEFAULT = { dose: 15, cal100: 353, prot100: 73.3, carb100: 8, fat100: 0 };
+
+function supps() {
+  if (!S.settings) S.settings = {};
+  if (!S.settings.supps) S.settings.supps = { creatine: DEFAULT_SUPPS.creatine, collagen: DEFAULT_SUPPS.collagen };
+  const sp = S.settings.supps;
+  if (!sp.coll) sp.coll = Object.assign({}, COLLAGEN_DEFAULT);
+  return sp;
+}
+function suppsActive() { const sp = supps(); return !!(sp.creatine || sp.collagen); }
+function suppsLabel() {
+  const sp = supps();
+  return sp.creatine && sp.collagen ? 'Créatine + collagène' : sp.creatine ? 'Créatine' : sp.collagen ? 'Collagène' : '';
+}
+function suppsShort() {
+  const sp = supps();
+  return sp.creatine && sp.collagen ? 'Compléments' : sp.creatine ? 'Créatine' : 'Collagène';
+}
+function collagenDose() {
+  const c = supps().coll, k = (c.dose || 0) / 100;
+  return { cal: c.cal100 * k, prot: c.prot100 * k, carb: c.carb100 * k, fat: c.fat100 * k };
+}
+
+// Marque les complements pris ou non pour un jour, avec la dose de collagene
+function setSuppsTaken(day, taken) {
+  if (!S.creatine) S.creatine = {};
+  // On retire toujours une dose deja ajoutee : jamais de double comptage
+  S.meals[day] = (S.meals[day] || []).filter(m => m._supp !== 'collagen');
+  if (taken) {
+    S.creatine[day] = true;
+    const sp = supps();
+    if (sp.collagen && sp.coll.dose > 0) {
+      const c = sp.coll, k = c.dose / 100;
+      S.meals[day].push({
+        name: 'Collagène', qty: c.dose, displayLabel: c.dose + 'g',
+        cal: c.cal100 * k, prot: c.prot100 * k, carb: c.carb100 * k, fat: c.fat100 * k,
+        cal100: c.cal100, prot100: c.prot100, carb100: c.carb100, fat100: c.fat100,
+        _scanned: true, _supp: 'collagen'
+      });
+    }
+  } else {
+    delete S.creatine[day];
+  }
   save();
-  const circle = document.getElementById('creatineCircle');
+}
+
+function suppsToast(taken) {
+  const sp = supps();
+  const kcal = sp.collagen ? Math.round(collagenDose().cal) : 0;
+  if (taken) return suppsLabel() + ' ✓' + (kcal ? ' (+' + kcal + ' kcal)' : '');
+  return 'Case décochée' + (kcal ? ' (−' + kcal + ' kcal)' : '');
+}
+
+function renderSuppsReminder() {
   const rem = document.getElementById('creatineReminder');
-  if (S.creatine[TODAY]) { circle.classList.add('done'); rem.style.opacity='0.5'; showToast('Créatine prise ✓'); }
-  else { circle.classList.remove('done'); rem.style.opacity='1'; }
+  if (!rem) return;
+  const on = suppsActive();
+  rem.style.display = on ? '' : 'none';
+  if (!on) return;
+  const taken = !!(S.creatine && S.creatine[TODAY]);
+  const dose = (S.meals[TODAY] || []).find(m => m._supp === 'collagen');
+  const txt = rem.querySelector('.reminder-text');
+  if (txt) txt.textContent = suppsLabel() + (taken
+    ? (dose ? ' · ' + Math.round(dose.cal) + ' kcal ajoutées' : ' · c\'est fait')
+    : ' · à prendre');
+  const c = document.getElementById('creatineCircle');
+  if (c) c.classList.toggle('done', taken);
+  rem.style.opacity = taken ? '0.55' : '1';
+}
+
+function toggleCreatine() {
+  const taken = !(S.creatine && S.creatine[TODAY]);
+  setSuppsTaken(TODAY, taken);
+  renderToday();
+  if (typeof renderWeek === 'function') renderWeek();
+  showToast(suppsToast(taken));
+}
+
+function toggleCreatineForDay(d) {
+  const taken = !(S.creatine && S.creatine[d]);
+  setSuppsTaken(d, taken);
+  if (d === TODAY) renderToday();
+  renderWeek();
+  showToast(suppsToast(taken));
+}
+
+// ----- reglages des complements -----
+function toggleSupp(key) {
+  const sp = supps();
+  sp[key] = !sp[key];
+  save();
+  renderSuppsSettings();
+  renderSuppsReminder();
+  if (typeof renderWeek === 'function') renderWeek();
+}
+
+function readCollagenFields() {
+  const num = id => {
+    const e = document.getElementById(id);
+    const v = parseFloat(String(e ? e.value : '').replace(',', '.'));
+    return isFinite(v) && v >= 0 ? v : 0;
+  };
+  return { dose: num('scDose'), cal100: num('scCal'), prot100: num('scProt'), carb100: num('scCarb'), fat100: num('scFat') };
+}
+
+function previewCollagen() {
+  const el = document.getElementById('suppCollSummary');
+  if (!el) return;
+  const c = readCollagenFields(), k = c.dose / 100;
+  const f1 = v => (Math.round(v * 10) / 10).toString().replace('.', ',');
+  el.textContent = c.dose
+    ? `Ta dose de ${f1(c.dose)} g : ${Math.round(c.cal100 * k)} kcal, ${f1(c.prot100 * k)} g de protéines, ${f1(c.carb100 * k)} g de glucides, ${f1(c.fat100 * k)} g de lipides.`
+    : 'Indique la dose que tu prends chaque jour.';
+}
+
+function saveCollagen() {
+  supps().coll = readCollagenFields();
+  save();
+  previewCollagen();
+  renderSuppsReminder();
+}
+
+function renderSuppsSettings() {
+  const sp = supps();
+  const a = document.getElementById('suppCreaToggle'), b = document.getElementById('suppCollToggle');
+  if (a) a.classList.toggle('on', !!sp.creatine);
+  if (b) b.classList.toggle('on', !!sp.collagen);
+  const box = document.getElementById('suppCollBox');
+  if (box) box.style.display = sp.collagen ? '' : 'none';
+  const put = (id, v) => { const e = document.getElementById(id); if (e && document.activeElement !== e) e.value = v; };
+  put('scDose', sp.coll.dose); put('scCal', sp.coll.cal100); put('scProt', sp.coll.prot100);
+  put('scCarb', sp.coll.carb100); put('scFat', sp.coll.fat100);
+  previewCollagen();
 }
 
 let selectedDayNav = null;
@@ -2445,7 +2761,7 @@ function renderWeek() {
     const [yr, mo, dy] = d.split('-').map(Number);
     const date = new Date(yr, mo-1, dy);
     const pct = m.cal > 0 ? Math.min(100, Math.round(m.cal / (tdee - TARGET_DEFICIT + m.burned) * 100)) : 0;
-    const barColor = m.cal > 0 && dayDeficit >= TARGET_DEFICIT ? 'var(--accent)' : m.cal > 0 ? 'var(--accent2)' : 'var(--border)';
+    const barColor = m.cal > 0 && dayDeficit >= TARGET_DEFICIT ? 'var(--c-def)' : m.cal > 0 ? 'var(--c-kcal)' : 'var(--border)';
     const hasData = m.cal > 0 || (S.sportLog[d]||[]).length > 0;
     return {d, dayName: dayNamesJS[date.getDay()], date, isToday, isFuture, pct, cal:m.cal, burned:m.burned, deficit:dayDeficit, barColor, hasData, meals: S.meals[d]||[], sports: S.sportLog[d]||[]};
   });
@@ -2481,7 +2797,7 @@ function renderWeek() {
   document.getElementById('weekAnalysis').innerHTML = analysis;
   document.getElementById('dayDetails').innerHTML = rows.map(r => {
     const nameStr = r.dayName + '. ' + r.date.getDate() + ' ' + shortMonths[r.date.getMonth()];
-    const defColor = r.deficit >= TARGET_DEFICIT ? 'var(--accent)' : r.deficit > 0 ? 'var(--accent2)' : 'var(--red)';
+    const defColor = r.deficit >= TARGET_DEFICIT ? 'var(--t-def)' : r.deficit > 0 ? 'var(--warn)' : 'var(--red)';
     const defStr = r.cal > 0 ? `<span style="color:${defColor};font-size:10px">${r.deficit>0?'+':''}${Math.round(r.deficit)}</span>` : '';
     return `<div class="day-row" style="${r.isFuture ? 'opacity:0.3' : ''}">
       <div class="day-name${r.isToday?' today':''}">
@@ -2519,10 +2835,10 @@ function renderDayPanel(d, rows) {
 
   // Action buttons to add to this day
   html += `<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-    <button onclick="openFoodModalForDay('${d}')" style="flex:1;padding:9px 10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;">🍽 + Repas</button>
-    <button onclick="openSportModalForDay('${d}')" style="flex:1;padding:9px 10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;">💪 + Sport</button>
-    <button onclick="toggleCreatineForDay('${d}')" style="flex:1;padding:9px 10px;border-radius:12px;border:1px solid ${creatineTaken ? 'var(--accent)' : 'var(--border)'};background:${creatineTaken ? 'var(--accent-dim)' : 'var(--surface2)'};color:${creatineTaken ? 'var(--accent)' : 'var(--muted2)'};font-size:12px;font-weight:600;cursor:pointer;">💊 ${creatineTaken ? 'Créatine ✓' : 'Créatine'}</button>
-    <button onclick="openActivityModalForDay('${d}')" style="flex:1;padding:9px 10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;">👟 Activité</button>
+    <button onclick="openFoodModalForDay('${d}')" style="flex:1 1 auto;white-space:nowrap;padding:9px 10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;">🍽 + Repas</button>
+    ${(sportLevel() === 'tout' && S.settings.tdeeMode !== 'total') ? `<button onclick="openSportModalForDay('${d}')" style="flex:1 1 auto;white-space:nowrap;padding:9px 10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;">💪 + Sport</button>` : ''}
+    ${suppsActive() ? `<button onclick="toggleCreatineForDay('${d}')" style="flex:1 1 auto;white-space:nowrap;padding:9px 10px;border-radius:12px;border:1px solid ${creatineTaken ? 'var(--accent)' : 'var(--border)'};background:${creatineTaken ? 'var(--accent-dim)' : 'var(--surface2)'};color:${creatineTaken ? 'var(--accent)' : 'var(--muted2)'};font-size:12px;font-weight:600;cursor:pointer;">💊 ${suppsShort()}${creatineTaken ? ' ✓' : ''}</button>` : ''}
+    ${S.settings.tdeeMode !== 'total' ? `<button onclick="openActivityModalForDay('${d}')" style="flex:1 1 auto;white-space:nowrap;padding:9px 10px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;">👟 Activité</button>` : ''}
   </div>`;
 
   if (!meals.length && !sports.length && !(S.steps && S.steps[d]) && !(S.watchCal && S.watchCal[d])) {
@@ -2541,7 +2857,7 @@ function renderDayPanel(d, rows) {
       const totalProt = meals.reduce((s,m) => s+m.prot, 0);
       html += `<div style="display:flex;gap:16px;margin-top:8px;margin-bottom:12px;">
         <span style="font-size:11px;color:var(--muted2)">Total : <strong style="color:var(--accent2)">${Math.round(totalCal)} kcal</strong></span>
-        <span style="font-size:11px;color:var(--muted2)">Protéines : <strong style="color:var(--blue)">${Math.round(totalProt)}g</strong></span>
+        <span style="font-size:11px;color:var(--muted2)">Protéines : <strong style="color:var(--t-prot)">${Math.round(totalProt)}g</strong></span>
       </div>`;
     }
     if (sports.length) {
@@ -2584,21 +2900,6 @@ function openFoodModalForDay(d) {
 function openSportModalForDay(d) {
   activeDayEdit = d;
   openSportModal();
-}
-
-function toggleCreatineForDay(d) {
-  if (!S.creatine) S.creatine = {};
-  S.creatine[d] = !S.creatine[d];
-  save();
-  // Refresh today UI if it's today
-  if (d === TODAY) {
-    const circle = document.getElementById('creatineCircle');
-    const rem = document.getElementById('creatineReminder');
-    if (S.creatine[d]) { circle.classList.add('done'); rem.style.opacity='0.5'; }
-    else { circle.classList.remove('done'); rem.style.opacity='1'; }
-  }
-  renderWeek();
-  showToast(S.creatine[d] ? 'Créatine ajoutée ✓' : 'Créatine retirée');
 }
 
 function delMealForDay(d, i) {
@@ -2731,7 +3032,7 @@ function renderControl() {
     const cmp = `Rythme visé <strong>${g(targetRate)}/sem</strong>, rythme réel <strong>${g(realRate)}/sem</strong> sur les 4 dernières semaines.`;
     if (ratio >= 1.15) { statusEmoji='🚀'; statusColor='var(--accent)'; statusTitle='PLUS RAPIDE QUE PRÉVU'; statusMsg=`${cmp} Tu descends plus vite que ton déficit ne le prévoit. Si c'est trop rapide, remonte un peu ton budget calorique.`; }
     else if (ratio >= 0.85) { statusEmoji='✅'; statusColor='var(--green)'; statusTitle='DANS LES CLOUS'; statusMsg=`${cmp} Ton déficit tient ses promesses, il reste ${kgLeft.toFixed(1)} kg.`; }
-    else if (ratio >= 0.5) { statusEmoji='⚠️'; statusColor='var(--accent2)'; statusTitle='UN PEU LENT'; statusMsg=`${cmp} L'écart vient souvent d'un TDEE surestimé ou de portions sous-évaluées. Vérifie tes pesées d'aliments avant de creuser le déficit.`; }
+    else if (ratio >= 0.5) { statusEmoji='⚠️'; statusColor='var(--warn)'; statusTitle='UN PEU LENT'; statusMsg=`${cmp} L'écart vient souvent d'un TDEE surestimé ou de portions sous-évaluées. Vérifie tes pesées d'aliments avant de creuser le déficit.`; }
     else if (realRate > 0) { statusEmoji='🔴'; statusColor='var(--red)'; statusTitle='TROP LENT'; statusMsg=`${cmp} Ton déficit réel est nettement plus faible qu'annoncé. Réajuste ton TDEE dans les réglages plutôt que de couper davantage.`; }
     else { statusEmoji='🔴'; statusColor='var(--red)'; statusTitle='STAGNATION'; statusMsg=`${cmp} Ton poids ne descend plus. Revois ton TDEE, il est probablement plus bas que les ${S.settings.tdee || 2300} kcal réglés.`; }
   }
@@ -2772,15 +3073,15 @@ function renderControl() {
           <canvas id="weightChart" style="width:100%;display:block;"></canvas>
           <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
             <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted2);">
-              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" style="stroke:var(--blue)" stroke-width="2" stroke-dasharray="4,3"/></svg>
+              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" style="stroke:var(--muted2)" stroke-width="2" stroke-dasharray="4,3"/></svg>
               Théorique
             </div>
             <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted2);">
-              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" style="stroke:var(--accent)" stroke-width="2.5"/></svg>
+              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" style="stroke:var(--c-prot)" stroke-width="2.5"/></svg>
               Poids réel
             </div>
             <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted2);">
-              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" style="stroke:var(--purple)" stroke-width="2"/></svg>
+              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" style="stroke:var(--c-fat)" stroke-width="2"/></svg>
               Tendance
             </div>
           </div>
@@ -2805,7 +3106,7 @@ function renderControl() {
             else if (diff <= 1.5) statusIcon='⚠️';
             else statusIcon='🔴';
           } else if (r.isCurrent) {
-            statusIcon='▶️'; rowBg='background:rgba(52,211,153,0.04);';
+            statusIcon='▶️'; rowBg='background:var(--accent-dim);';
           } else {
             statusIcon='';
           }
@@ -2813,7 +3114,7 @@ function renderControl() {
           if (r.actual !== null) {
             const diff = parseFloat((r.actual - r.theoretical).toFixed(1));
             const sign = diff > 0 ? '+' : '';
-            const diffColor = diff <= -0.5 ? 'var(--accent)' : diff <= 0.5 ? 'var(--green)' : diff <= 1.5 ? 'var(--accent2)' : 'var(--red)';
+            const diffColor = diff <= -0.5 ? 'var(--accent)' : diff <= 0.5 ? 'var(--green)' : diff <= 1.5 ? 'var(--warn)' : 'var(--red)';
             actualHtml = `<span style="color:${diffColor};font-weight:700">${r.actual} <span style="font-size:10px">(${sign}${diff})</span></span> ${statusIcon}`;
           } else if (r.isCurrent) {
             actualHtml = `<span style="color:var(--accent2);font-size:11px">En cours ▶️</span>`;
@@ -2902,7 +3203,7 @@ function renderProjections() {
   el.innerHTML = milestones.map((m, i) => {
     const dateStr = m.date.getDate() + ' ' + months[m.date.getMonth()];
     const color = m.isGoal ? 'var(--accent)' : i === 0 ? 'var(--accent2)' : 'var(--muted2)';
-    const border = m.isGoal ? '1.5px solid rgba(24,194,156,0.3)' : '1px solid var(--border)';
+    const border = m.isGoal ? '1.5px solid var(--accent-line)' : '1px solid var(--border)';
     return `<div style="background:var(--surface2);border:${border};border-radius:14px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;">
       <div style="display:flex;align-items:center;gap:10px;">
         <span style="font-size:20px">${emojis[m.target]}</span>
@@ -2958,7 +3259,7 @@ function openWeightPastModal() {
   document.getElementById('weightPastEdit').style.display = 'none';
   list.innerHTML = days.map(d => {
     const entry = S.weights.find(w => w.date === d.str);
-    return `<div onclick="openWeightDayEdit('${d.str}','${d.label}')" style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:14px;background:var(--surface2);border:1px solid ${entry ? 'rgba(24,194,156,0.25)' : 'var(--border)'};cursor:pointer;">
+    return `<div onclick="openWeightDayEdit('${d.str}','${d.label}')" style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:14px;background:var(--surface2);border:1px solid ${entry ? 'var(--accent-line)' : 'var(--border)'};cursor:pointer;">
       <div style="font-size:13px;font-weight:500;color:var(--text);">${d.label}</div>
       <div style="display:flex;align-items:center;gap:8px;">
         ${entry ? `<span style="font-size:13px;font-weight:700;color:var(--accent);">${entry.val} kg</span>` : `<span style="font-size:12px;color:var(--muted2);">—</span>`}
@@ -3031,8 +3332,8 @@ function renderMuscu() {
   document.getElementById('muscleGrid').innerHTML = MUSCLE_GROUPS.map(m => {
     const done = todayMuscles.includes(m.id);
     return `<div onclick="toggleMuscle('${m.id}')" style="
-      background:${done ? 'rgba(24,194,156,0.08)' : 'var(--surface2)'};
-      border:1px solid ${done ? 'rgba(24,194,156,0.3)' : 'var(--border)'};
+      background:${done ? 'var(--accent-dim)' : 'var(--surface2)'};
+      border:1px solid ${done ? 'var(--accent-line)' : 'var(--border)'};
       border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;
       transition:all 0.2s ease;user-select:none;">
       <div style="font-size:24px;margin-bottom:6px;">${m.emoji}</div>
@@ -3070,7 +3371,7 @@ function renderMuscu() {
         <div style="display:flex;flex-wrap:wrap;gap:6px;">
           ${v.muscles.map(mid => {
             const mg = MUSCLE_GROUPS.find(m => m.id === mid);
-            return mg ? `<span style="background:rgba(24,194,156,0.08);border:1px solid rgba(24,194,156,0.2);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--accent);">${mg.emoji} ${mg.name}</span>` : '';
+            return mg ? `<span style="background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--accent);">${mg.emoji} ${mg.name}</span>` : '';
           }).join('')}
         </div>
       </div>`).join('');
@@ -3186,8 +3487,8 @@ function renderMusclePastGrid() {
   document.getElementById('musclePastMuscleGrid').innerHTML = MUSCLE_GROUPS.map(m => {
     const done = dayMuscles.includes(m.id);
     return `<div onclick="toggleMuscleForDay('${m.id}')" style="
-      background:${done ? 'rgba(24,194,156,0.08)' : 'var(--surface2)'};
-      border:1px solid ${done ? 'rgba(24,194,156,0.3)' : 'var(--border)'};
+      background:${done ? 'var(--accent-dim)' : 'var(--surface2)'};
+      border:1px solid ${done ? 'var(--accent-line)' : 'var(--border)'};
       border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;transition:all 0.2s;">
       <div style="font-size:24px;margin-bottom:6px;">${m.emoji}</div>
       <div style="font-size:13px;font-weight:600;color:${done ? 'var(--accent)' : 'var(--text2)'};">${m.name}</div>
@@ -3414,6 +3715,7 @@ function confirmEphemeralFood() {
   const day = activeDayEdit || TODAY;
   if (!S.meals[day]) S.meals[day] = [];
   if (editMealIdx !== null) {
+    const _prevE = S.meals[day][editMealIdx]; if (_prevE && _prevE._supp) entry._supp = _prevE._supp;
     S.meals[day][editMealIdx] = entry;
     editMealIdx = null;
     showToast(name + ' modifié ✓');
@@ -3632,7 +3934,7 @@ async function fetchProductByBarcode(barcode) {
       status.style.color = 'var(--accent)';
       status.textContent = `✅ "${name}" trouvé ! Vérifie et enregistre.`;
     } else {
-      status.style.color = 'var(--accent2)';
+      status.style.color = 'var(--warn)';
       status.textContent = '⚠️ Produit introuvable. Saisis les infos manuellement.';
     }
   } catch(e) {
@@ -3668,7 +3970,7 @@ function updateScanVerifyCheck() {
   if (gap <= 0.15) {
     el.innerHTML = `<span style="color:var(--accent)">✓ Cohérent</span> <span style="color:var(--muted2)">: les macros donnent ${est} kcal pour ${Math.round(cal)} affichées.</span>`;
   } else {
-    el.innerHTML = `<span style="color:var(--accent2)">⚠️ À vérifier</span> <span style="color:var(--muted2)">: les macros donnent ${est} kcal, l'étiquette ${Math.round(cal)}. Une valeur est peut-être fausse.</span>`;
+    el.innerHTML = `<span style="color:var(--warn)">⚠️ À vérifier</span> <span style="color:var(--muted2)">: les macros donnent ${est} kcal, l'étiquette ${Math.round(cal)}. Une valeur est peut-être fausse.</span>`;
   }
 }
 
@@ -3924,6 +4226,7 @@ function confirmAddFood() {
   const targetDay = activeDayEdit || TODAY;
   if (!S.meals[targetDay]) S.meals[targetDay] = [];
   if (editMealIdx !== null) {
+    const _prevE = S.meals[targetDay][editMealIdx]; if (_prevE && _prevE._supp) entry._supp = _prevE._supp;
     S.meals[targetDay][editMealIdx] = entry;
     showToast(selectedFood.name + ' modifié ✓');
     editMealIdx = null;
@@ -4114,10 +4417,10 @@ function drawWeightChart() {
 
   ctx.clearRect(0, 0, W, H);
 
-  const C_THEO  = cssVar('--blue', '#4f6d8f');
-  const C_REAL  = cssVar('--accent', '#4a7c62');
-  const C_GOAL  = cssVar('--accent2', '#b8763a');
-  const C_TREND = cssVar('--purple', '#7a6a8a');
+  const C_THEO  = cssVar('--muted2', '#6F707A');
+  const C_REAL  = cssVar('--c-prot', '#57AB2B');
+  const C_GOAL  = cssVar('--c-kcal', '#FF5B3A');
+  const C_TREND = cssVar('--c-fat', '#5D65EA');
   // Couleurs lues dans le theme actif (la classe light-theme active en fait
   // le mode sombre, d'ou les graduations invisibles en theme clair avant)
   const gridColor = cssVar('--border', 'rgba(0,0,0,0.08)');
@@ -4269,9 +4572,9 @@ function toggleAccordion(id, headerEl) {
 function toggleTheme() {
   const isLight = document.body.classList.toggle('light-theme');
   document.getElementById('themeToggle').classList.toggle('on', isLight);
-  document.getElementById('themeColor').content = isLight ? '#14171a' : '#f7f7f5';
+  document.getElementById('themeColor').content = isLight ? '#0F0F12' : '#F2F3F5';
   // Le canevas peint les zones sures iOS : il doit suivre le theme.
-  document.documentElement.style.background = isLight ? '#14171a' : '#f7f7f5';
+  document.documentElement.style.background = isLight ? '#0F0F12' : '#F2F3F5';
   try { localStorage.setItem(STORAGE_NS + '_theme', isLight ? 'light' : 'dark'); } catch(e) {}
 }
 
@@ -4280,8 +4583,8 @@ function loadTheme() {
     const t = localStorage.getItem(STORAGE_NS + '_theme');
     if (t === 'light') {
       document.body.classList.add('light-theme');
-      document.getElementById('themeColor').content = '#14171a';
-      document.documentElement.style.background = '#14171a';
+      document.getElementById('themeColor').content = '#0F0F12';
+      document.documentElement.style.background = '#0F0F12';
       const toggle = document.getElementById('themeToggle');
       if (toggle) toggle.classList.add('on');
     }
@@ -4365,7 +4668,7 @@ loadState();
     <div id="adStepsBlock" style="display:none;">
       <div class="input-label">Nombre de pas</div>
       <input class="qty-number-input" type="number" inputmode="numeric" id="adStepsInput" placeholder="ex: 8000" oninput="adPreview()">
-      <div id="adStepsRes" style="text-align:center;font-family:var(--font-display);font-weight:800;font-size:17px;color:var(--mint);margin-top:12px;"></div>
+      <div id="adStepsRes" style="text-align:center;font-family:var(--font-display);font-weight:800;font-size:17px;color:var(--t-def);margin-top:12px;"></div>
     </div>
     <div id="adWatchBlock">
       <div class="input-label">Kcal actives (anneau Bouger)</div>
